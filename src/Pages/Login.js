@@ -27,7 +27,8 @@ function Login(){
         firebase.auth.signInWithEmailAndPassword(form.email,form.password)
         .then(data=>{
             console.log("data",data)
-            context.loginUser();
+            console.log("email ",data.user.email)
+            context.loginUser(data.user.email);
             history.push("/")
             setSpinner(false);
         })
@@ -65,7 +66,7 @@ function Login(){
                         controlId="formBasicEmail" label="Contraseña" type="password" placeholder="Ingrese su contraseña" 
                         name="password" value={form.password} change={handleChange}
                     />
-                    
+
                     <ButtonWithLoading text="Ingresar" loading={spinner} />
 
                 </Form>

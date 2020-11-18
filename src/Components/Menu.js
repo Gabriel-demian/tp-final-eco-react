@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {Link} from "react-router-dom";
 import NetContext from "../Context/NetContext";
 // eslint-disable-next-line
-{/*import {Link} from "react-router-dom";*/}
+{/*import {Link, } from "react-router-dom";*/}
 
 
 class Menu extends Component {
@@ -44,7 +44,8 @@ class Menu extends Component {
                                          <>
                                             <Nav.Link as={Link} to={'/'}>Inicio</Nav.Link>
                                             <Nav.Link onClick={context.logoutUser} >Salir</Nav.Link>
-                                        </> 
+                                            {/* <Nav.Link>{context.email}</Nav.Link> */}
+                                        </>  
                                     }
                                     
                                     {
@@ -54,7 +55,19 @@ class Menu extends Component {
                                             <Nav.Link as={Link} to={'/login'}>Login</Nav.Link>
                                         </>
                                     }
+
                                     
+                                    
+                                </Nav>
+                                <Nav>
+                                    {
+                                    context.login &&
+                                        <>
+                                        <Navbar.Text>
+                                            Logeado como: <a href="#login">{context.email}</a>
+                                        </Navbar.Text>
+                                        </>
+                                    }       
                                 </Nav>
                             </Navbar>
 
