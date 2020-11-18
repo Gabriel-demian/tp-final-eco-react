@@ -1,12 +1,11 @@
 import React,{useState} from "react";
-//import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import firebase from '../Config/firebase'
 //import Spinner from 'react-bootstrap/Spinner'
 import { useHistory } from 'react-router-dom'
 import ButtonWithLoading from "../Components/ButtonWithLoading"
-import Input from "../Components/Input"
 
 const styles = { 
     cards:{
@@ -15,21 +14,36 @@ const styles = {
         marginTop:'10px'
     }
 }
-function Login(){
+function Registro(){
     const history = useHistory();
-    const [form,setForm] = useState({email:'',password:''});
+    const [form,setForm] = useState({nombre:'',apellido:'',email:'',password:''});
+
     const [spinner,setSpinner] = useState(false)
 
     const handleSubmit = (e)=>{
         setSpinner(true);
-        firebase.auth.signInWithEmailAndPassword(form.email,form.password)
+        console.log("HandleSubmit",form)
+        firebase.auth.createUserWithEmailAndPassword(form.email, form.password)
         .then(data=>{
-            console.log("data",data)
-            history.push("/")
-            setSpinner(false);
+            console.log("data: ", data.user.uid)
+            firebase.db.collection("usuarios").add({
+                nombre:form.nombre,
+                apellido:form.apellido,
+                email:form.email,
+                userId:data.user.uid
+            })
+            .then(data=>{
+                console.log("Data database: ",data)
+                setSpinner(false);
+                history.push("/login")
+            })
+            .catch(error=>{
+                console.log("error database: ", error)
+                setSpinner(false);
+            })
         })
         .catch(err=>{
-            console.log("error",err)
+            console.log("error: ", err)
             setSpinner(false);
         })
         e.preventDefault();
@@ -45,24 +59,23 @@ function Login(){
             [name]:value
         })
     }
+
     return(
         <>
         <Card style={styles.cards}>
             <Card.Body>
-                <Card.Title>Login</Card.Title>
+                <Card.Title>Registrarse</Card.Title>
                 <Form onSubmit={handleSubmit}>
-
-                    
-                    <Input 
-                        controlId="formBasicEmail" label="Email" type="email" placeholder="Ingrese su email" 
-                        name="email" value={form.email} change={handleChange}
-                    />
-
-                    <Input 
-                        controlId="formBasicEmail" label="Contraseña" type="password" placeholder="Ingrese su contraseña" 
-                        name="password" value={form.password} change={handleChange}
-                    />
-                    {/* 
+                    <Form.Group controlId="formBasicNombre">
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control type="text" placeholder="Ingrese su nombre" name="nombre" value={form.nombre} onChange={handleChange}/>
+                        
+                    </Form.Group>
+                    <Form.Group controlId="formBasicApellido">
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control type="text" placeholder="Ingrese su apellido" name="apellido" value={form.apellido} onChange={handleChange}/>
+                        
+                    </Form.Group>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
                         <Form.Control type="email" placeholder="Ingrese su email" name="email" value={form.email} onChange={handleChange}/>
@@ -73,9 +86,9 @@ function Login(){
                         <Form.Control type="password" placeholder="Ingrese su contraseña" name="password" value={form.password} onChange={handleChange}/>
                         
                     </Form.Group>
-                    */}
-                    <ButtonWithLoading text="Ingresar" loading={spinner} />
 
+                    
+                    <ButtonWithLoading text="Registrarse" loading={spinner} />
                 </Form>
             </Card.Body>
         </Card>
@@ -84,4 +97,4 @@ function Login(){
         </>
     )
 }
-export default Login;
+export default Registro;
