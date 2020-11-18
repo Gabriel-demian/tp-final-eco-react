@@ -8,6 +8,7 @@ import Producto from "./Pages/Producto"
 import firebase from './Config/firebase';
 import {BrowserRouter,Route} from "react-router-dom";
 import GlobalState from "./Context/GlobalState";
+import RegistroNuevoProducto from "./Pages//RegistroNuevoProducto";
 
 class App extends Component{
     constructor(){
@@ -54,7 +55,8 @@ class App extends Component{
                     <Route path="/registro" component={Registro} exact />
                     <Route path="/login" component={Login} exact />
                     <Route path="/producto/:id" component={Producto} exact />
-                
+                    <Route path="/registroNuevoProducto" component={RegistroNuevoProducto} exact />
+                    
                     <Footer />  
                 </BrowserRouter>   
             </GlobalState>

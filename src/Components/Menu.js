@@ -63,6 +63,7 @@ class Menu extends Component {
                                     {
                                     context.login &&
                                         <>
+                                        <Nav.Link as={Link} to={'/registroNuevoProducto'}>Registro Nuevo Producto</Nav.Link>
                                         <Navbar.Text>
                                             Logeado como: <a href="#login">{context.email}</a>
                                         </Navbar.Text>
