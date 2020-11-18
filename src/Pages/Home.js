@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProductoUnico from "../Components/ProductoUnico";
 import CardColumns from 'react-bootstrap/CardColumns'
-import {getProductos} from "../services/ProductosService"
+//import {getProductos} from "../services/ProductosService"
 import firebase from "../Config/firebase"
 class Home extends Component{
     constructor(){
@@ -47,9 +47,9 @@ class Home extends Component{
         }else{
             return (
                 <CardColumns>
-                    {this.state.productos.map(producto=><ProductoUnico id={producto.id} data={producto.data()} buttons={true}/>)}
+                    {this.state.productos.map(producto=><ProductoUnico key={producto.id} id={producto.id} data={producto.data()} buttons={true}/>)}
                     {/* Se duplica el código para tener más productos de ejemplo. */}
-                    {this.state.productos.map(producto=><ProductoUnico id={producto.id} data={producto.data()} buttons={true}/>)}
+                    {this.state.productos.map(producto=><ProductoUnico key={producto.id} id={producto.id} data={producto.data()} buttons={true}/>)}
                 </CardColumns>
             )
         } 

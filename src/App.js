@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Menu from "./Components/Menu";
-import Home from "./Pages/Home"
+import Home from "./Pages/Home";
 import Footer from "./Components/Footer"
 import Registro from "./Pages/Registro";
 import Login  from "./Pages/Login";
 import Producto from "./Pages/Producto"
 import firebase from './Config/firebase';
-import {BrowserRouter,Route} from "react-router-dom"
-
+import {BrowserRouter,Route} from "react-router-dom";
+import GlobalState from "./Context/GlobalState";
 
 class App extends Component{
     constructor(){
@@ -46,10 +46,7 @@ class App extends Component{
     }
     render() {
         return (
-           
-
-            <div>
-                <div>
+            <GlobalState>
                 <BrowserRouter>
                     <Menu options={this.state.opcionesMenu} title={this.state.titulo} click={this.handleClick}/>
                 
@@ -60,8 +57,7 @@ class App extends Component{
                 
                     <Footer />  
                 </BrowserRouter>   
-                </div>
-            </div>
+            </GlobalState>
         )
     }
 }

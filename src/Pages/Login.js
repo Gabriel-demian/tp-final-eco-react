@@ -1,12 +1,13 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react"; // incluir useContext
 //import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import Card from 'react-bootstrap/Card'
-import firebase from '../Config/firebase'
+import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import firebase from '../Config/firebase';
 //import Spinner from 'react-bootstrap/Spinner'
-import { useHistory } from 'react-router-dom'
-import ButtonWithLoading from "../Components/ButtonWithLoading"
-import Input from "../Components/Input"
+import { useHistory } from 'react-router-dom';
+import ButtonWithLoading from "../Components/ButtonWithLoading";
+import Input from "../Components/Input";
+import NetContext from "../Context/NetContext";
 
 const styles = { 
     cards:{
@@ -16,6 +17,7 @@ const styles = {
     }
 }
 function Login(){
+    const context = useContext(NetContext);
     const history = useHistory();
     const [form,setForm] = useState({email:'',password:''});
     const [spinner,setSpinner] = useState(false)
@@ -25,6 +27,7 @@ function Login(){
         firebase.auth.signInWithEmailAndPassword(form.email,form.password)
         .then(data=>{
             console.log("data",data)
+            context.loginUser();
             history.push("/")
             setSpinner(false);
         })
@@ -62,18 +65,7 @@ function Login(){
                         controlId="formBasicEmail" label="Contraseña" type="password" placeholder="Ingrese su contraseña" 
                         name="password" value={form.password} change={handleChange}
                     />
-                    {/* 
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Ingrese su email" name="email" value={form.email} onChange={handleChange}/>
-                        
-                    </Form.Group>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Contraseña</Form.Label>
-                        <Form.Control type="password" placeholder="Ingrese su contraseña" name="password" value={form.password} onChange={handleChange}/>
-                        
-                    </Form.Group>
-                    */}
+                    
                     <ButtonWithLoading text="Ingresar" loading={spinner} />
 
                 </Form>
