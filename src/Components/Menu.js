@@ -43,6 +43,7 @@ class Menu extends Component {
                                          context.login &&
                                          <>
                                             <Nav.Link as={Link} to={'/'}>Inicio</Nav.Link>
+                                            <Nav.Link onClick={context.logoutUser} >Salir</Nav.Link>
                                         </> 
                                     }
                                     
