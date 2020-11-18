@@ -30,7 +30,7 @@ class ProductoDetalle extends Component{
             <Card.Body >
                 <Card.Title>{this.props.data.name}</Card.Title>
                 <Card.Text>
-                    <img src={this.props.data.photo_url} style={styles.imgProducto}></img>
+                    <img src={this.props.data.photo_url} style={styles.imgProducto} alt="Product"></img>
                 </Card.Text>
                 <Card.Subtitle className="mb-2 text-muted">${this.props.data.description}</Card.Subtitle>
                 <Card.Text>
