@@ -45,6 +45,7 @@ class Menu extends Component {
                                             <Nav.Link as={Link} to={'/'}>Inicio</Nav.Link>
                                             <Nav.Link onClick={context.logoutUser} >Salir</Nav.Link>
                                             {/* <Nav.Link>{context.email}</Nav.Link> */}
+                                            <Nav.Link as={Link} to={'/registroNuevoProducto'}>Registro Nuevo Producto</Nav.Link>
                                         </>  
                                     }
                                     
@@ -63,7 +64,7 @@ class Menu extends Component {
                                     {
                                     context.login &&
                                         <>
-                                        <Nav.Link as={Link} to={'/registroNuevoProducto'}>Registro Nuevo Producto</Nav.Link>
+                                        
                                         <Navbar.Text>
                                             Logeado como: <a href="#login">{context.email}</a>
                                         </Navbar.Text>
