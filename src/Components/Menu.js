@@ -33,7 +33,7 @@ class Menu extends Component {
             return (
                 <div>
                     <Navbar bg="primary" variant="dark">
-                        <Navbar.Brand as={Link} to={'/'}>TP-Unidad2</Navbar.Brand>
+                        <Navbar.Brand as={Link} to={'/'}>TP Final Ecommerce</Navbar.Brand>
                         <Nav className="mr-auto">
                             <Nav.Link as={Link} to={'/'}>Inicio</Nav.Link>
                             

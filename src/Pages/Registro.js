@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import firebase from '../Config/firebase'
-import Spinner from 'react-bootstrap/Spinner'
+//import Spinner from 'react-bootstrap/Spinner'
 import { useHistory } from 'react-router-dom'
+import ButtonWithLoading from "../Components/ButtonWithLoading"
 
 const styles = { 
     cards:{
@@ -87,13 +88,7 @@ function Registro(){
                     </Form.Group>
 
                     
-                    <Button variant="primary" type="submit">
-                        {
-                            spinner &&
-                            <Spinner animation="border" />
-                        }
-                        Registrarse
-                    </Button>
+                    <ButtonWithLoading text="Registrarse" loading={spinner} />
                 </Form>
             </Card.Body>
         </Card>
