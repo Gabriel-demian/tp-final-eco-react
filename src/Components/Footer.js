@@ -9,7 +9,7 @@ const Footer = () => {
           <MDBCol md="6">
             <h5 className="title">Footer Content</h5>
             <p>
-                Trabajo práctico del Módulo 2
+                Trabajo Final React UTN
             </p>
           </MDBCol>
           <MDBCol md="6">
