@@ -63,7 +63,7 @@ function Login(){
                     />
 
                     <Input 
-                        controlId="formBasicEmail" label="Contraseña" type="password" placeholder="Ingrese su contraseña" 
+                        controlId="formBasicPassword" label="Contraseña" type="password" placeholder="Ingrese su contraseña" 
                         name="password" value={form.password} change={handleChange}
                     />
 
