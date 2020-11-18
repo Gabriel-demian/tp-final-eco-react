@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import ProductoDetalle from "../Components/ProductoDetalle"
+import firebase from "../Config/firebase"
 function Producto(props){
     console.log(props.match.params.id)
     const [producto,setProducto] = useState({})
@@ -7,18 +8,16 @@ function Producto(props){
 
     useEffect(
         () => {
-            fetch("https://jsonfy.com/items/"+props.match.params.id)
-            .then(res=>res.json())
-            .then(result=>{
-                console.log("result",result);
-                if(result.length>0){
-                    setProducto(result[0]);
-                    setLoading(false);
-                }
-            },
-            (err)=>{
-                console.log("error",err)
+
+            firebase.db.doc("productos/"+props.match.params.id)
+            .get()
+            .then(doc=>{
+                console.log("Doc data",doc.data())
+                setProducto(doc);
+                setLoading(false);
             })
+
+            
         }, [props.match.params.id]);
 
 
@@ -28,7 +27,7 @@ function Producto(props){
         )
     }else{
         return(
-            <ProductoDetalle data={producto} buttons={false} />
+            <ProductoDetalle data={producto.data()} buttons={false} />
         )
     }
     

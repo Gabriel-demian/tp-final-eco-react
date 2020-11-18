@@ -43,7 +43,7 @@ class ProductoUnico extends Component{
                 {
                     this.props.buttons &&
                     <Button variant="outline-info">
-                        <Link to={'/producto/'+this.props.data.id}>
+                        <Link to={'/producto/'+this.props.id}>
                             Ver Detalle
                         </Link>
                     </Button>
