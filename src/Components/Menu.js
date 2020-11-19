@@ -66,7 +66,11 @@ class Menu extends Component {
                                         <>
                                         
                                         <Navbar.Text>
-                                            Logeado como: <a href="#login">{context.email}</a>
+                                            Logeado como: <a href="#login">{context.email}</a> . . . . 
+                                        </Navbar.Text>
+                                                        
+                                        <Navbar.Text>
+                                            Total Carrito: [ <a href="#login">{context.total}</a> ]
                                         </Navbar.Text>
                                         </>
                                     }       
