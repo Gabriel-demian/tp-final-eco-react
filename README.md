@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # URL en Heroku:    https://react-eco-utn.herokuapp.com/
 
+# tener en cuenta
+$ npm install --save mdbreact
+$ npm install --save firebase
+
 
 ## Available Scripts
 
